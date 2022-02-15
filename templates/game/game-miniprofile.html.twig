@@ -1,0 +1,7 @@
+<div class="miniprofile">
+    <a href="{{ path("game_show", {gameId:game.id}) }}">
+        <img class="game-miniprofile-picture" src="{{ asset(game.getPicturePath) }}" alt="Image du jeu">
+        <br>
+        {{ game.getTitle }}
+    </a>
+</div>

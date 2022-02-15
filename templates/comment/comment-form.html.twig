@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<section>
+    {{ form_start(form) }}
+    {{ form_row(form.content) }}
+    <button type="submit">valider</button>
+    {{ form_end(form) }}
+
+    {% if app.request.get('_route') == 'comment_create' %}
+        <a href="{{ path("comment_create_cancel", {postId:postId}) }}">
+            <button>Annuler</button>
+        </a>
+    {% elseif app.request.get('_route') == 'comment_modify' %}
+        <a href="{{ path("comment_modify_cancel", {commentId:commentId}) }}">
+            <button>Annuler</button>
+        </a>
+    {% endif %}
+</section>
+{% endblock %}

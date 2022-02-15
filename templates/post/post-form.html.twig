@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <section>
+        {{ form_start(form) }}
+            {{ form_errors(form) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.description) }}
+            {{ form_rest(form) }}
+            <button type="submit">valider</button>
+        {{ form_end(form) }}
+
+        {% if app.request.get('_route') == 'post_create' %}
+            <a href="{{ path("post_create_cancel", {gameId:gameId}) }}">
+                <button>Annuler</button>
+            </a>
+        {% elseif app.request.get('_route') == 'post_modify' %}
+            <a href="{{ path("post_modify_cancel", {postId:postId}) }}">
+                <button>Annuler</button>
+            </a>
+        {% endif %}
+    </section>
+
+{% endblock %}

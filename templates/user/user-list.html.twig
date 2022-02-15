@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Utilisateurs ( {{ nbUsers }} )</h1>
+    <hr>
+    <div class="list">
+        {% for user in users %}
+            {% include 'user/user-miniprofile.html.twig' %}
+        {% endfor %}
+    </div>
+{% endblock %}

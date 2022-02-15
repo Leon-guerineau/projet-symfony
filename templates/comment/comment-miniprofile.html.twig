@@ -1,0 +1,36 @@
+<div class="comment">
+    <div class="comment-sources">
+        {# affichage du miniprofile de l'utilisateur si on est sur une page de post #}
+        {% if app.request.get('_route') == 'post_show' %}
+            {% include 'user/user-miniprofile.html.twig' with {user:comment.getAuthor} %}
+        {# affichage du miniprofile du post si on est sur un profile utilisateur #}
+        {% elseif app.request.get('_route') == 'user_show' %}
+            {% include 'post/post-miniprofile.html.twig' with {post:comment.getPost} %}
+        {% endif %}
+    </div>
+    <div class="comment-informations">
+        Créer le : {{ comment.getCreatedAtString }}<br>
+        {% if comment.getCreatedAtString != comment.getUpdatedAtString %}
+            Modifié le : {{ comment.getUpdatedAtString }}
+        {% endif %}
+    </div>
+    <div class="comment-content">
+        {{ comment.getContent }}
+    </div>
+    <div class="comment-buttons">
+        {# affichage du boutton de suppression de commentaire pour l'auteur du commentaire ou un admin #}
+        {% if is_granted('ROLE_USER') and comment.getAuthor.getId == app.user.getId or is_granted('ROLE_ADMIN') %}
+            <a href="{{ path("comment_delete", {commentId:comment.getId}) }}">
+                <button type="button" class="btn btn btn-danger btn-lg">Supprimer</button>
+            </a>
+            {# affichage du boutton de modification de commentaire pour l'auteur du commentaire uniquement #}
+            {% if comment.getAuthor.getId == app.user.getId %}
+                <a href="{{ path("comment_modify", {commentId:comment.getId}) }}">
+                    <button type="button" class="btn btn-primary btn-lg">Modifier</button>
+                </a>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+
+<hr style="width: 50%">

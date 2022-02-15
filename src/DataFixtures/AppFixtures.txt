@@ -1,0 +1,120 @@
+<?php
+
+namespace App\DataFixtures;
+
+use App\Entity\Comment;
+use App\Entity\Genre;
+use App\Entity\Post;
+use App\Entity\Role;
+use App\Entity\User;
+use App\Entity\Game;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
+
+class AppFixtures extends Fixture
+{
+    public function load(ObjectManager $manager): void
+    {
+        //Users
+
+        $jean = new User();
+        $jean->setEmail("jean@gmail.com")
+            ->setPassword("1234")
+            ->setUsername("jean1234")
+            ->setPicturePath("picture/user/" . $jean->getUsername() . ".jpg")
+            ->setRegisteredAt(date_create_immutable());
+        $manager->persist($jean);
+
+        $alex = new User();
+        $alex->setEmail("alex@gmail.com")
+            ->setPassword("0000")
+            ->setUsername("00alex00")
+            ->setPicturePath("picture/user/" . $alex->getUsername() . ".jpg")
+            ->setRegisteredAt(date_create_immutable());
+        $manager->persist($alex);
+
+        $sacha = new User();
+        $sacha->setEmail("sacha@gmail.com")
+            ->setPassword("azerty")
+            ->setUsername("sachazerty")
+            ->setPicturePath("picture/user/" . $sacha->getUsername() . ".jpg")
+            ->setRegisteredAt(date_create_immutable());
+        $manager->persist($sacha);
+
+        //Genres
+
+        $mmorpg = new Genre();
+        $mmorpg->setLabel("mmorpg");
+        $manager->persist($mmorpg);
+
+        $sandbox = new Genre();
+        $sandbox->setLabel("sandbox");
+        $manager->persist($sandbox);
+
+        //Games
+
+        $ff14 = new Game();
+        $ff14->setAuthor($jean)
+            ->setTitle("ff14")
+            ->setPicturePath("picture/game/" . $ff14->getTitle() . ".jpg")
+            ->setReleaseDate(date_create_immutable())
+            ->addGenre($mmorpg)
+            ->addUser($jean);
+        $manager->persist($ff14);
+
+        $ff14->addUser($alex);
+        $manager->persist($ff14);
+
+        $minecraft = new Game();
+        $minecraft->setAuthor($alex)
+            ->setTitle("minecraft")
+            ->setPicturePath("picture/game/" . $minecraft->getTitle() . ".jpg")
+            ->setReleaseDate(date_create_immutable())
+            ->addGenre($sandbox)
+            ->addUser($alex);
+        $manager->persist($minecraft);
+
+        $minecraft->addUser($jean);
+        $manager->persist($minecraft);
+
+        //Posts
+
+        $post1 = new Post();
+        $post1->setAuthor($jean)
+            ->setGame($minecraft)
+            ->setTitle("Très beau jeu")
+            ->setDescription("")
+            ->setPicturePath("picture/post/" . $post1->getTitle() . ".jpg")
+            //->setCreatedAt(date_create_immutable())
+            ;
+        $manager->persist($post1);
+
+        $post2 = new Post();
+        $post2->setAuthor($alex)
+            ->setGame($ff14)
+            ->setTitle("Gameplay incroyable")
+            ->setDescription("desc")
+            ->setPicturePath("picture/post/" . $post2->getTitle() . ".jpg")
+            //->setCreatedAt(date_create_immutable())
+            ;
+        $manager->persist($post2);
+
+        //Comments
+
+        $comment1 = new Comment();
+        $comment1->setAuthor($jean)
+            ->setPost($post2)
+            ->setContent("yes")
+            ->setCreatedAt(date_create_immutable());
+        $manager->persist($comment1);
+
+        $comment2 = new Comment();
+        $comment2->setAuthor($alex)
+            ->setPost($post1)
+            ->setContent("no")
+            ->setCreatedAt(date_create_immutable());
+        $manager->persist($comment2);
+
+        $manager->flush();
+    }
+}

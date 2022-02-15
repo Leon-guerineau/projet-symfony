@@ -7,14 +7,35 @@
         "php": ">=8.0.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "composer/package-versions-deprecated": "1.11.99.4",
+        "doctrine/doctrine-bundle": "^2.5",
+        "doctrine/doctrine-migrations-bundle": "^3.2",
+        "doctrine/orm": "^2.10",
+        "fakerphp/faker": "^1.17",
+        "gedmo/doctrine-extensions": "^3.4",
+        "hautelook/alice-bundle": "^2.10",
+        "knplabs/knp-paginator-bundle": "^5.8",
+        "mbezhanov/faker-provider-collection": "^2.0",
+        "nelmio/alice": "^3.10",
+        "sensio/framework-extra-bundle": "^6.2",
+        "stof/doctrine-extensions-bundle": "^1.7",
+        "symfony/asset": "6.0.*",
         "symfony/console": "6.0.*",
         "symfony/dotenv": "6.0.*",
+        "symfony/filesystem": "6.0.*",
         "symfony/flex": "^2",
+        "symfony/form": "6.0.*",
         "symfony/framework-bundle": "6.0.*",
+        "symfony/mime": "6.0.*",
+        "symfony/proxy-manager-bridge": "6.0.*",
         "symfony/runtime": "6.0.*",
-        "symfony/yaml": "6.0.*"
-    },
-    "require-dev": {
+        "symfony/security-bundle": "6.0.*",
+        "symfony/twig-bundle": "6.0.*",
+        "symfony/validator": "6.0.*",
+        "symfony/yaml": "6.0.*",
+        "twig/cssinliner-extra": "^3.3",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0"
     },
     "config": {
         "allow-plugins": {
@@ -66,5 +87,11 @@
             "allow-contrib": false,
             "require": "6.0.*"
         }
+    },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "symfony/maker-bundle": "^1.36",
+        "symfony/stopwatch": "6.0.*",
+        "symfony/web-profiler-bundle": "6.0.*"
     }
 }

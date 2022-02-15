@@ -1,0 +1,13 @@
+{% if is_granted('ROLE_ADMIN') %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="background-color: #B0413E !important;">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('genre_crud_index') }}">CRUD Genres</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endif %}

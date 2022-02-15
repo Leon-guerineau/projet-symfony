@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+    {% include 'post/post-filter.html.twig' with {form:form}%}
+    <div class="navigation">
+        {{ knp_pagination_render(posts) }}
+    </div>
+{% endblock %}
+{% block body %}
+    <h1>Posts ( {{ posts.getTotalItemCount }} )</h1>
+    <hr>
+    <div class="list">
+        {% for post in posts %}
+            {% include 'post/post-miniprofile.html.twig'%}
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="navigation">
+        {{ knp_pagination_render(posts) }}
+    </div>
+{% endblock %}

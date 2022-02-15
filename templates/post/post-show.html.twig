@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="post">
+        <div class="left">
+            <div class="post-sources">
+                {% include 'user/user-miniprofile.html.twig' with {user:post.getAuthor} %}<br>
+                {% include 'game/game-miniprofile.html.twig' with {game:post.getGame} %}<br>
+            </div>
+            {# affichage du boutton de suppression de commentaire pour l'auteur du commentaire ou un admin #}
+            {% if is_granted('ROLE_USER') and post.getAuthor.getId == app.user.getId or is_granted('ROLE_ADMIN') %}
+                <a href="{{ path("post_delete", {postId:post.getId}) }}">
+                    <button type="button" class="btn btn btn-danger btn-lg">Supprimer</button>
+                </a>
+                {# affichage du boutton de modification de commentaire pour l'auteur du commentaire uniquement #}
+                {% if post.getAuthor.getId == app.user.getId %}
+                    <a href="{{ path("post_modify", {postId:post.getId}) }}">
+                        <button type="button" class="btn btn-primary btn-lg">Modifier</button>
+                    </a>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="right">
+            <div class="post-content">
+                <h1> {{ post.getTitle }}</h1> <br>
+                {% if post.getDescription != null %}
+                    <h3> {{ post.getDescription }}</h3> <br>
+                {% endif %}
+                <p><u>created at :</u> {{ post.getCreatedAtString }}</p>
+                {% if post.getCreatedAtString != post.getUpdatedAtString %}
+                    <p><u>updated at :</u> {{ post.getUpdatedAtString }}</p> <br>
+                {% endif %}
+            </div>
+            <div class="post-picture">
+                <img src="{{ asset(post.getPicturePath) }}" alt="Image du Post">
+            </div>
+        </div>
+    </div>
+
+    <hr style="height: 5px">
+
+    <h3>Commentaires</h3>
+    <div class="post-comments">
+        <div class="post-comment-create">
+            <a href="{{ path("comment_create", {postId:post.id}) }}">
+                <button type="button" class="btn btn-primary btn-lg">Ajouter un commentaire</button>
+            </a>
+        </div><br>
+        {% for comment in comments %}
+            {% include 'comment/comment-miniprofile.html.twig' with {comment:comment} %}
+        {% endfor %}
+    </div>
+{% endblock %}

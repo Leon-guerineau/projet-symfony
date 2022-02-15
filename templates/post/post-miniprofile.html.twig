@@ -1,0 +1,8 @@
+<div class="miniprofile">
+    <a href="{{ path("post_show", {postId:post.id}) }}">
+        <img class="post-miniprofile-picture" src="{{ asset(post.getPicturePath) }}" alt="Image du post">
+        {{ post.getTitle }}
+    </a>
+    De : {{ post.getAuthor.getUsername }}<br>
+        Sur : {{ post.getGame.getTitle }}
+</div>

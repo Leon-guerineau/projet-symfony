@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Jeux ( {{ nbGames }} )</h1>
+    <hr>
+    <div class="list">
+        {% for game in games %}
+            {% include 'game/game-miniprofile.html.twig' %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% if is_granted('ROLE_ADMIN') %}
+    <style>
+        .bg-primary {
+            background-color: rgba(100, 20, 20) !important;
+        }
+    </style>
+{% endif %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('game_list') }}">Jeux</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('post_list') }}">Posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('user_list') }}">Utilisateurs</a>
+                </li>
+                <li class="nav-item">
+                    {% if is_granted('ROLE_USER') %}
+                        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                    {% else %}
+                        <a class="nav-link" href="{{ path('app_login') }}">Connexion / Inscription</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('about') }}">À Propos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

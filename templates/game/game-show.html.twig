@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="game-informations">
+        <div class="game-dates">
+            <p><u>created at :</u> {{ game.getCreatedAtString }}</p> <br>
+            <p><u>updated at :</u> {{ game.getUpdatedAtString }}</p> <br>
+        </div>
+        <div class="game-sources">
+            <p><u>author :</u></p><br>
+            {% include 'user/user-miniprofile.html.twig' with {user:game.getAuthor} %}<br>
+        </div>
+        <div class="game-content">
+            <p><u>titre :</u> {{ game.getTitle }}</p> <br>
+            <p><u>release date :</u> {{ game.getReleaseDateString }}</p> <br>
+        </div>
+        <div class="game-picture">
+            <img src="{{ asset(game.getPicturePath) }}" alt="Image du Jeu">
+        </div>
+    </div>
+    <div class="game-posts">
+        <div class="game-post-create">
+            <a href="{{ path("post_create", {gameId:game.id}) }}">
+                <button type="button" class="btn btn-primary btn-lg">Ajouter un post</button>
+            </a>
+        </div><br>
+        <div class="list">
+            {% for post in posts %}
+                {% include 'post/post-miniprofile.html.twig' with {post:post} %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

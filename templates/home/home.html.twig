@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Accueil</h1>
+    <hr>
+    <h2>Nouveaux Posts</h2>
+    <br>
+    <div class="list">
+        {% for post in posts %}
+            {% include 'post/post-miniprofile.html.twig' %}
+        {% endfor %}
+    </div>
+    <br>
+    <a href="{{ path('post_list') }}">
+        <button type="button" class="btn btn-primary btn-lg">Voir plus ( {{ nbPosts }} )</button>
+    </a>
+    <hr>
+    <h2>Nouveaux Jeux</h2>
+    <br>
+    <div class="list">
+        {% for game in games %}
+            {% include 'game/game-miniprofile.html.twig' %}
+        {% endfor %}
+    </div>
+    <br>
+    <a href="{{ path('game_list') }}">
+        <button type="button" class="btn btn-primary btn-lg">Voir plus ( {{ nbGames }} )</button>
+    </a>
+    <hr>
+    <h2>Nouveaux Utilisateurs</h2>
+    <br>
+    <div class="list">
+        {% for user in users %}
+            {% include 'user/user-miniprofile.html.twig' %}
+        {% endfor %}
+    </div>
+    <br>
+    <a href="{{ path('user_list') }}">
+        <button type="button" class="btn btn-primary btn-lg">Voir plus ( {{ nbUsers }} )</button>
+    </a>
+{% endblock body %}

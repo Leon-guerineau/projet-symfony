@@ -1,0 +1,18 @@
+{{ form_start(form) }}
+    <div class="search" >
+        <div class="search-bars">
+            Titre :<br>{{ form_row(form.title) }}
+            Créer par :<br>{{ form_row(form.author) }}
+        </div>
+        <div class="search-dates">
+            Créer avant le :<br>{{ form_row(form.maxDate) }}
+            Créer après le :<br>{{ form_row(form.minDate) }}
+        </div>
+        <div class="search-lists">
+            Jeux :<br>{{ form_row(form.games) }}
+        </div>
+        <div class="search-buttons">
+            <button type="submit">Filtrer</button>
+        </div>
+    </div>
+{{ form_end(form) }}
