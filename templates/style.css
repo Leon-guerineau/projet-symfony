@@ -31,6 +31,11 @@
     flex-wrap: wrap;
 }
 
+.date {
+    font-size: 15px;
+    color: #888888;
+}
+
 .comment-content {
     font-size: 30px;
 }
@@ -43,16 +48,24 @@
     margin: 10px auto;
 }
 
+.user-miniprofile {
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
 .user-miniprofile-picture{
-    width: 25%;
+    height: 50px;
+    width: 50px;
     border-radius: 100%;
     background-color: #6c6c6c;
 }
+
 .user-miniprofile-username{
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 10px;
     flex-shrink: 3;
+    font-size: 1.10vw;
 }
 .post-miniprofile-picture{
     width: 100%;
@@ -67,15 +80,24 @@
     display: flex;
     gap: 20px;
 }
-.left{
-    flex: 1 0 20%;
+.post-sources {
+    display: flex;
+    justify-content: space-around;
+    height: 10%;
+    align-items: center;
 }
-.right{
-    flex: 1 0 60%;
-}
-.post-sources .miniprofile{
-    width: 100%;
-}
+
 .post-picture{
-    width: 1000%;
+    width: auto;
+    height: auto;
+}
+
+.post-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.post-game {
+    display: flex;
+    justify-content: center;
 }

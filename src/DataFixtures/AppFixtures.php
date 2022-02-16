@@ -147,7 +147,7 @@ class AppFixtures extends Fixture
             $dummy_game = new Game();
             $dummy_game->setAuthor($arrayDummyUsers[rand(0, $this->nbDummyUsers)])
                 ->setTitle('G_' . $faker->word())
-                ->setPicturePath("fixture-asset/dummy-game-picture.png")
+                ->setPicturePath("fixture-asset/dummy-game/dummy-game-picture-".rand(0,200).".png")
                 ->setReleaseDate($faker->dateTime)
                 ->addGenre($arrayDummyGenres[rand(0, $this->nbDummyGenres)]);
             $author_dummy_game = $dummy_game->getAuthor();
@@ -167,7 +167,7 @@ class AppFixtures extends Fixture
 
         //Dummy Game Affectations
 
-        for ($i=0;$i<100;$i++){
+        for ($i=0;$i<1000;$i++){
             $arrayDummyGames[rand(0, $this->nbDummyGames)]->AddUser($arrayDummyUsers[rand(0, $this->nbDummyUsers)]);
         }
 
@@ -193,12 +193,20 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < self::NB_OF_POSTS_CREATED; $i++) {
             $dummy_post = new post();
+            $create = rand(10,1000);
+            $update = $create + rand(1,10);
             $dummy_post->setAuthor($arrayDummyUsers[rand(0, $this->nbDummyUsers)])
                 ->setGame($arrayDummyGames[rand(0, $this->nbDummyGames)])
                 ->setTitle('P_' . $faker->word())
                 ->setDescription($faker->sentence(10))
-                ->setCreatedAt(date_create_immutable()->sub(new DateInterval('P'.rand(10,1000).'D')))
+                ->setCreatedAt(date_create_immutable()->sub(new DateInterval('P'.$create.'D')))
                 ->setPicturePath("fixture-asset/dummy-post/dummy-post-picture-".rand(0,200).".png");
+            if (rand(0,5) == 5) {
+                $dummy_post->setUpdatedAt(date_create_immutable()->add(new DateInterval('P'.$update.'D')));
+            }
+            else {
+                $dummy_post->setUpdatedAt(date_create_immutable()->sub(new DateInterval('P'.$create.'D')));
+            }
             $manager->persist($dummy_post);
             $arrayDummyPosts[$i] = $dummy_post;
             $this->nbDummyPosts = $i;

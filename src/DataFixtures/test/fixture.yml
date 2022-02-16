@@ -1,0 +1,6 @@
+App\Entity\User:
+  user_5:
+    username: test
+    email: 'test'
+    picturePath: 'fixture-asset/post/Très beau jeu.jpg'
+    password: <getHashedPassword('1234')>

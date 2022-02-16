@@ -79,7 +79,7 @@ class Comment
 
     public function getCreatedAtString(): string
     {
-        return $this->getCreatedAt()->format('Y-m-d H:i:s');
+        return $this->getCreatedAt()->format('Y-m-d \à H:i:s');
     }
 
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
@@ -96,7 +96,7 @@ class Comment
 
     public function getUpdatedAtString(): string
     {
-        return $this->getUpdatedAt()->format('Y-m-d H:i:s');
+        return $this->getUpdatedAt()->format('Y-m-d \à H:i:s');
     }
 
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self

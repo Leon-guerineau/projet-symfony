@@ -125,6 +125,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * @see UserPasswordHasherInterface
+     */
+    public function setHashedPassword($password): self
+    {
+        $this->password = $this->passwordHasher->hashPassword($this, $password);
+
+        return $this;
+    }
+
+    /**
      * @see UserInterface
      */
     public function eraseCredentials()

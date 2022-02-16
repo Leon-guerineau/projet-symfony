@@ -9,10 +9,12 @@
         {% endif %}
     </div>
     <div class="comment-informations">
-        Créer le : {{ comment.getCreatedAtString }}<br>
-        {% if comment.getCreatedAtString != comment.getUpdatedAtString %}
-            Modifié le : {{ comment.getUpdatedAtString }}
-        {% endif %}
+        <div class="date">
+            Créer le {{ comment.getCreatedAtString }}<br>
+            {% if comment.getCreatedAt != comment.getUpdatedAt %}
+                Dernière modification le {{ comment.getUpdatedAtString }}
+            {% endif %}
+        </div>
     </div>
     <div class="comment-content">
         {{ comment.getContent }}

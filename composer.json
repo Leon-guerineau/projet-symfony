@@ -13,7 +13,6 @@
         "doctrine/orm": "^2.10",
         "fakerphp/faker": "^1.17",
         "gedmo/doctrine-extensions": "^3.4",
-        "hautelook/alice-bundle": "^2.10",
         "knplabs/knp-paginator-bundle": "^5.8",
         "mbezhanov/faker-provider-collection": "^2.0",
         "nelmio/alice": "^3.10",
@@ -90,6 +89,7 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "hautelook/alice-bundle": "^2.10",
         "symfony/maker-bundle": "^1.36",
         "symfony/stopwatch": "6.0.*",
         "symfony/web-profiler-bundle": "6.0.*"
