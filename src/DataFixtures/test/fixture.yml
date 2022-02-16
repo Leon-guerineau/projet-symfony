@@ -1,6 +1,20 @@
 App\Entity\User:
-  user_5:
-    username: test
-    email: 'test'
-    picturePath: 'fixture-asset/post/Très beau jeu.jpg'
+
+  Jean:
+    username: jean1234
+    email: jean@gmail.com
+    picturePath: fixture-asset/user/jean1234.jpg
     password: <getHashedPassword('1234')>
+
+  Alex:
+    username: 00alex00
+    email: alex@gmail.com
+    picturePath: fixture-asset/user/00alex00.jpg
+    password: <getHashedPassword('0000')>
+
+  Sacha:
+    roles: [ROLE_ADMIN]
+    username: sachazerty
+    email: sacha@gmail.com
+    picturePath: fixture-asset/user/sachazerty.jpg
+    password: <getHashedPassword('azerty')>
