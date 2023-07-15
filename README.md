@@ -1,4 +1,4 @@
-# Prérequis
+# Prï¿½requis
 
 Modifier le fichier .env
  - Changer le prefix des containers
@@ -12,43 +12,32 @@ Modifier le fichier .env
 docker-compose up -d
 ```
 
-Le préfix -d` empêche d'avoir les logs dans le terminal après le lançement.
+Le prï¿½fix -d` empï¿½che d'avoir les logs dans le terminal aprï¿½s le lanï¿½ement.
 
-S'ils sont lancés pour la première fois, les containers vont metre du temps à s'installer
+S'ils sont lancï¿½s pour la premiï¿½re fois, les containers vont metre du temps ï¿½ s'installer
 
 Projet : http://localhost | PHPMyAdmin : https://localhost:8080
 
-- ## Accéder au terminal du container PHP pour les commandes
+- ## installer les dÃ©pendances composer
 
 ```Shell
-docker exec -it symfony_php bash
+docker exec -it symfony_php bash -c 'composer install'
 ```
 
-# Symfony
+- ## crÃ©Ã© la BDD
 
-- ## Recréer le projet symfony (bien vider le dossier symfony avant)
+```Shell
+docker exec -it symfony_php bash -c 'php bin/console doctrine:database:create'
+```
 
-> symfony new symfony --dir=/var/www/symfony --no-git && chmod -R 777 /var/www/symfony
+- ## Lancer les migrations
 
-Pour spécifier la version de symfony if faut ajouter `--version="(version)"` derriere `--no-git`
+```Shell
+docker exec -it symfony_php bash -c 'php bin/console doctrine:migrations:migrate -n'
+```
 
-- ## Les Packages
+- ## Lancer les migrations
 
-    - ### Annotation Routes
-    > composer require annotations
-
-    - ### Twig
-    > composer require twig
-
-    - ### Doctrine
-      - dire non 'x' quand on demande de modifier/créer la config docker
-    > composer require symfony/orm-pack
- 
-    - ### Maker Bundle
-    > composer require --dev symfony/maker-bundle
-
-    - ### Security Bundle
-    > composer require symfony/security-bundle
-
-    - ### Assets
-    > composer require symfony/asset
+```Shell
+docker exec -it symfony_php bash -c 'php bin/console doctrine:fixtures:load -n'
+```
